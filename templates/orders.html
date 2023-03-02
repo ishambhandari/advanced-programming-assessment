@@ -1,0 +1,26 @@
+{%extends "base.html" %}
+{%block content%}
+	<table>
+		<thead>
+			<tr>
+				<th>order_id</th>
+				<th>customer_id</th>
+				<th>payment</th>
+				<th>order_date</th>
+				<th>delivery_date</th>
+			</tr>
+		</thead>
+		<tbody>
+    {%for items in data %}
+			<tr>
+      <td>{{items[0]}}</td>
+      <td>{{items[1]}}</td>
+      <td>{{items[2]}}</td>
+      <td>{{items[3]}}</td>
+      <td>{{items[4]}}</td>
+			</tr>
+    {%endfor%}
+		</tbody>
+	</table>
+{%endblock%}
+

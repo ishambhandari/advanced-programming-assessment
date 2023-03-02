@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../static/base.css">
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+          <li><a href="{{url_for('customers')}}">Customers</a></li>
+          <li><a href="{{url_for('sales')}}">Sales</a></li>
+          <li><a href="{{url_for('orders')}}">Orders</a></li>
+          <li><a href="{{url_for('products')}}">Products</a></li>
+			</ul>
+		</nav>
+	</header>
+</body>
+      {%block content%}
+      {%endblock%}
+</html>
