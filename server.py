@@ -42,7 +42,7 @@ def customers():
 
 @app.route('/customers/<id>', methods = ['GET'])
 def customers_detail(id):
-    data_initial = curs.execute('SELECT * FROM customers where customer_id = ? ', (id))
+    data_initial = curs.execute('SELECT * FROM customers where customer_id = ? ', [id])
     data = data_initial.fetchall()
     return render_template('customer_detail.html', data = data)
 
@@ -87,7 +87,8 @@ def product_detail(id):
 
 @app.route('/customers/<id>')
 def customer_detail(id):
-    data = curs.execute('select * from customers where id = ?', id)
+    print('this is id', id)
+    data = curs.execute('select * from customers where customer_id = ?', [id])
     return render_template('customer_detail', data = data)
 
 
