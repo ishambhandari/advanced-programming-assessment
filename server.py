@@ -92,5 +92,14 @@ def customer_detail(id):
 
 
 
+# error handling 
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('404.html')
+
+@app.errorhandler(500)
+def server_error(e):
+    return render_template('500.html')
+
 
 

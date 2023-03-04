@@ -1,4 +1,10 @@
 {% extends "base.html" %} {%block content%}
+
+  <a href="{{url_for('customers')}}" class='button-link'>
+<div class = 'back-button'>
+    back
+</div>
+  </a>
 <div class="card">
   <h2>{{data[0][1]}}</h2>
   <p>Id: {{data[0][0]}}</p>
