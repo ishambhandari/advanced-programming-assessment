@@ -84,3 +84,31 @@ table th {
   margin: 0;
   padding: 5px 0;
 }
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content:center; 
+  align-items: center;
+  font-size: 16px;
+}
+
+.pagination a {
+  color: blue;
+  text-decoration: none;
+  margin-right: 10px;
+  padding:10px;
+}
+
+.pagination a:hover {
+  text-decoration: underline;
+}
+
+.pagination p {
+  margin: 0;
+  padding:10px;
+}
+
+.pagination select {
+  margin-left: 10px;
+  font-size: 16px;
+}

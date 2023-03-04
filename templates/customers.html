@@ -19,7 +19,7 @@
 	</table>
 
     {% if total_pages > 1 %}
-	<div>
+	<div class='pagination'>
 		{% if page > 1 %}
 		<a href="{{ url_for('customers', page=1, per_page=per_page) }}">First</a>
 		<a href="{{ url_for('customers', page=page-1, per_page=per_page) }}">Previous</a>
