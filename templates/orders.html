@@ -22,5 +22,26 @@
     {%endfor%}
 		</tbody>
 	</table>
+
+    {% if total_pages > 1 %}
+	<div>
+		{% if page > 1 %}
+		<a href="{{ url_for('orders', page=1, per_page=per_page) }}">First</a>
+		<a href="{{ url_for('orders', page=page-1, per_page=per_page) }}">Previous</a>
+		{% endif %}
+		
+		{% if page < total_pages %}
+		<a href="{{ url_for('orders', page=page+1, per_page=per_page) }}">Next</a>
+		<a href="{{ url_for('orders', page=total_pages, per_page=per_page) }}">Last</a>
+		{% endif %}
+		
+		<p>Page {{ page }} of {{ total_pages }}</p>
+		<p>Show <select onchange="location = this.value;">
+			{% for option in [10, 25, 50, 100] %}
+			<option value="{{ url_for('orders', page=1, per_page=option) }}" {% if option == per_page %}selected{% endif %}>{{ option }}</option>
+			{% endfor %}
+		</select> entries</p>
+	</div>
+	{% endif %}
 {%endblock%}
 

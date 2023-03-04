@@ -23,26 +23,74 @@ def sales():
 
     # Calculate total number of pages for pagination
     total_pages = math.ceil(total_records / per_page)
-    print(sales_data_initial.description)
     return render_template('sales.html', data = sales_data, page = page, per_page = per_page, total_pages = total_pages)
 
 @app.route('/customers', methods=['GET'])
 def customers():
-    customer_data_initial = curs.execute('select * from customers')
-    customer_data = customer_data_initial.fetchall()
-    return render_template('customers.html', data = customer_data)
+    page = request.args.get('page', default=1, type=int)
+    per_page = request.args.get('per_page', default=10, type=int)
+    offset = (page-1) * per_page
+    limit = per_page
+    customers_data_initial = curs.execute('select * from customers LIMIT ? OFFSET ?', (limit,offset))
+    customers_data = customers_data_initial.fetchall()
+     # Count total number of records for pagination
+    total_records = curs.execute('SELECT COUNT(*) FROM customers').fetchone()[0]
+
+    # Calculate total number of pages for pagination
+    total_pages = math.ceil(total_records / per_page)
+    return render_template('customers.html', data = customers_data, page = page, per_page = per_page, total_pages = total_pages)
+
+@app.route('/customers/<id>', methods = ['GET'])
+def customers_detail(id):
+    data_initial = curs.execute('SELECT * FROM customers where customer_id = ? ', (id))
+    data = data_initial.fetchall()
+    return render_template('customer_detail.html', data = data)
+
+
 
 @app.route('/orders', methods=['GET'])
 def orders():
-    orders_data_initial = curs.execute('select * from orders')
-    orders_data = orders_data_initial.fetchall()
-    return render_template('orders.html', data = orders_data)
+    page = request.args.get('page', default=1, type=int)
+    per_page = request.args.get('per_page', default=10, type=int)
+    offset = (page-1) * per_page
+    limit = per_page
+    order_data_initial = curs.execute('select * from orders LIMIT ? OFFSET ?', (limit,offset))
+    order_data = order_data_initial.fetchall()
+     # Count total number of records for pagination
+    total_records = curs.execute('SELECT COUNT(*) FROM orders').fetchone()[0]
+
+    # Calculate total number of pages for pagination
+    total_pages = math.ceil(total_records / per_page)
+    return render_template('orders.html', data = order_data, page = page, per_page = per_page, total_pages = total_pages)
 
 @app.route('/products', methods=['GET'])
 def products():
-    products_data_initial = curs.execute('select * from products')
+    page = request.args.get('page', default=1, type=int)
+    per_page = request.args.get('per_page', default=10, type=int)
+    offset = (page-1) * per_page
+    limit = per_page
+    products_data_initial = curs.execute('select distinct product_type from products LIMIT ? OFFSET ?', (limit,offset))
     products_data = products_data_initial.fetchall()
-    return render_template('products.html', data = products_data)
-    
+     # Count total number of records for pagination
+    total_records = curs.execute('SELECT COUNT(*) FROM products').fetchone()[0]
+
+    # Calculate total number of pages for pagination
+    total_pages = math.ceil(total_records / per_page)
+
+    return render_template('products.html', data = products_data, page= page, per_page = per_page, total_pages = total_pages)
+
+@app.route('/products/<id>')
+def product_detail(id):
+    data_initial = curs.execute('SELECT * FROM products where product_type= ?', [id])
+    products_data = data_initial.fetchall()
+    return render_template('product_detail.html', data = products_data)
+
+@app.route('/customers/<id>')
+def customer_detail(id):
+    data = curs.execute('select * from customers where id = ?', id)
+    return render_template('customer_detail', data = data)
+
+
+
 
 

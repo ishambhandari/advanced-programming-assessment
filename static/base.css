@@ -10,6 +10,18 @@ header {
   padding: 20px;
 }
 
+.back-button{
+  margin-top:15px;
+  padding: 10px;
+  background-color:#333;
+  border-radius:10px;
+  width:10%
+}
+.button-link{
+  text-decoration:none;
+  color:#fff;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -56,4 +68,18 @@ table th {
   background-color: #333;
   color: #fff;
   text-align: left;
+}
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 300px;
+  margin: 10px auto;
+}
+.card h2 {
+  margin-top: 0;
+}
+.card p {
+  margin: 0;
+  padding: 5px 0;
 }

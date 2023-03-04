@@ -1,31 +1,26 @@
-{%extends "base.html" %}
-{%block content%}
-	<table>
-		<thead>
-			<tr>
-				<th>product_id</th>
-				<th>product_type</th>
-				<th>product_name</th>
-				<th>size</th>
-				<th>colour</th>
-				<th>price</th>
-				<th>quantity</th>
-				<th>description</th>
-			</tr>
-		</thead>
-		<tbody>
+{%extends "base.html" %} {%block content%}
+<table>
+ <thead>
+    <tr>
+      <th>products</th>
+      <!-- <th>product_type</th> -->
+      <!-- <th>product_name</th> -->
+      <!-- <th>size</th> -->
+      <!-- <th>colour</th> -->
+      <!-- <th>price</th> -->
+      <!-- <th>quantity</th> -->
+      <!-- <th>description</th> -->
+    </tr>
+  </thead>
+  <tbody>
     {%for items in data %}
-			<tr>
-      <td>{{items[0]}}</td>
-      <td>{{items[1]}}</td>
-      <td>{{items[2]}}</td>
-      <td>{{items[3]}}</td>
-      <td>{{items[4]}}</td>
-      <td>{{items[5]}}</td>
-      <td>{{items[6]}}</td>
-      <td>{{items[]}}</td>
-			</tr>
+    <tr>
+      <td>
+        <a href="{{url_for('product_detail',id = items[0])}}"> {{items[0]}} </a>
+      </td>
+    </tr>
     {%endfor%}
-		</tbody>
-	</table>
+  </tbody>
+</table>
+
 {%endblock%}
